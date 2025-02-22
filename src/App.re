@@ -1,9 +1,52 @@
-let haha = "Hi";
+type todo = {
+  id: int,
+  title: string,
+  completed: bool,
+};
+
+type state = {
+  todos: list(todo),
+  input: string,
+};
+
+type action =
+  | AddTodo(string)
+  | ToggleTodo(int)
+  | RemoveTodo(int)
+  | ClearCompleted
+  | SetInput(string)
+  | ClearInput;
+
+let initialState = {
+  todos: [],
+  input: "",
+};
 
 module App = {
   [@react.component]
   let make = () => {
-    <div> <h1> {React.string(haha)} </h1> </div>;
+    let (state, dispatch) =
+      React.useReducer(
+        (state, action) =>
+          switch (action) {
+          | _ => state
+          },
+        initialState,
+      );
+
+    <div>
+      <input
+        value={state.input}
+        onChange={e => dispatch(SetInput(RR.getValueFromEvent(e)))}
+      />
+      <button onClick={_ => dispatch(AddTodo(state.input))}>
+        {React.string("Add")}
+      </button>
+      <div> {React.string("Hi")} </div>
+      <div> {React.string("Hi")} </div>
+      <div> {React.string("Hi")} </div>
+      <div> {React.string("Hi")} </div>
+    </div>;
   };
 };
 
