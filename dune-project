@@ -20,6 +20,6 @@
  (name signals_re)
  (synopsis "A signals implementation in ReasonML")
  (description "A signals implementation in ReasonML")
- (depends ocaml dune melange reason-react)
+ (depends ocaml dune melange reason-react reason-react-ppx)
  (tags
   ("signals" "react" "reasonml")))
